@@ -1,0 +1,15 @@
+// more advanced way to store string length and value wit less opcodes
+
+#define macro MAIN() = takes(0) returns(0) {
+    // we store the dynamic offset of 0x20 at 0x00
+    0x20 0x00 mstore
+
+    // we store length + value of "Hello World!" with less bytecodes
+    // we concatenate length 0x0c with value 0x48656c6c6f20576f726c6421 -> 0x0c48656c6c6f20576f726c6421
+    // we store it in memory 0x20 shifted by length (0x0c) -> 0x2c
+    0x0c48656c6c6f20576f726c6421 0x2c mstore
+
+    // we return the 96 bytes
+    0x60 0x00 return
+
+}

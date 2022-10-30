@@ -1,0 +1,13 @@
+#define macro MAIN() = takes(0) returns(0) {
+    // store dynamic offset at 0x00
+    0x20 0x00 mstore 
+
+    // store "Hello World!" string length at 0x20
+    0x0c 0x20 mstore
+
+    // store bytes for "Hello World!" at 0x40
+    __RIGHTPAD(0x48656c6c6f20576f726c6421) 0x40 mstore
+
+    // returns "Hello World!" 96 bytes
+    0x60 0x00 return
+}
